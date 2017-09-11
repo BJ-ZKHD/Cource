@@ -3,6 +3,7 @@
 基本要求：
 > * 课程全部使用Markdown标记语言撰写
 > * 课程教材结构参考：https://www.gitbook.com/book/wizardforcel/the-art-of-programming-by-july/details
+> * 参考文献要有完整记录，链接则添加在文档最后，文献原文则提交到参考文件文件夹，在我们的中提供说明
 
 ## 目录（一期）
 * 工程开发基础
