@@ -1,5 +1,9 @@
 # 课程体系开发
 
+基本要求：
+> * 课程全部使用Markdown标记语言撰写
+> * 课程教材结构参考：https://www.gitbook.com/book/wizardforcel/the-art-of-programming-by-july/details
+
 ## 目录（一期）
 * 工程开发基础
   * 编程规范
