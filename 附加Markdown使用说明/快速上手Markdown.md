@@ -190,7 +190,25 @@
 
 ![sss](http://img1.ph.126.net/7DrMwgXfAnULGwSdv4k8nQ==/6632501528864280721.jpg)
 
-![测试本地图片上传](http://img2.ph.126.net/DGJTD6CAU7YEevIg29JFhQ==/6632553205910802977.jpg )
+![测试本地图片上传](http://img2.ph.126.net/TrCgeG9ZnvJj6WajUhPm5w==/6632264034352700795.jpg )
+
+图片居中使用html语句：
+
+~~~
+<div align = "center">
+//空行
+图片
+//空行
+</div>
+~~~
+
+示例：
+
+<div align = "center">
+
+![测试本地图片上传](http://img2.ph.126.net/TrCgeG9ZnvJj6WajUhPm5w==/6632264034352700795.jpg )
+
+</div>
 
 ### 2.5.2 参考式表示
 说明：在文档要插入图片的地方写![图片Alt][标记]；
