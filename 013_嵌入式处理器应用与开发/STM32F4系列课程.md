@@ -12,7 +12,7 @@
     - 1.3 STM32库开发 
     - 1.4 Cortex-M4处理器简介
     - 1.5 STM32F4××x系列简介
-        - 1.2.1 STM32F429I-DISCO原理图
+        - 1.2.1 STM32F429I-DISCO开发板简介
         - 1.2.2 STM32F429I-DISCO芯片解读
 
 + 第02章 开发工具
@@ -193,17 +193,89 @@ STM32F4系列产品概览如下图1-5和图1-6所示：
 
 </div>
 
+### 1.4.1 STM32F429I-DISCO开发板简介
 
+STM32F429I-DISCO是一款高性能ARM Cortex-M4学习平台。属于探索套件板，具有如下特性：
 
-### 1.4.1 STM32F429I-DISCO原理图
+> * 采用ST公司高性能ARM Cortex-M4 32位RISC内核的微控制器。
+> * 主频高达180MHz。Cortex-M4内核具有一个浮点单元，支持所有ARM单精度数据处理指令和数据类型。
+> * 板载ST-LINK/V2，带有选择模式接口，可作为独立的ST-LINK/V2使用。
+> * L3GD20,ST微机点动作传感器，3轴数字输出陀螺仪。
 
-### 1.4.2 STM32F429I-DISCO芯片解读
+STM32型号说明：
+
+> 以STM32F429ZIT6芯片为例，该型号组成为7部分，其命名规则如下表1-3：
+
+<div align = "center">
+
+表 1-3 STM32F429ZIT6型号说明
+
+![STM32F429ZIT6型号说明](http://img1.ph.126.net/0vSiaN3Dhz9xwLiYt-mvsQ==/6632432259631765330.png "STM32F429ZIT6型号说明")
+
+</div>
+
+### 1.4.2 STM32F429I-DISCO芯片原理图
+
+STM32F429ZIT6U原理图如图1-7所示：
+
+<div align = "center">
+
+![STM32F429ZIT6U原理图](http://img2.ph.126.net/y416PlFGpelMmHQxN0c_yQ==/6632366288934096611.png "STM32F429ZIT6U原理图")
+
+图1-7 STM32F429ZIT6U原理图
+
+</div>
+
 
 # 第02章 开发工具
 
 ## 2.1 keil-MDK工具简介
 
+Keil是德国知名软件公司Keil(已经并入ARM公司)开发的微控制器软件开发平台，是目前ARM内核单片机开发的主流工具。Keil提供了包括C编译器、宏汇编、连接器、库管理和一个功能强大的仿真调试器在内的完整方案，通过一个集成开发环境(μVision)将这些功能组合在一起。μVision在调试程序，软件仿真方面也有很强大的功能。如下图2-1为Keil-MDK的界面。
+
+<div align = "center">
+
+![keil-MDK界面](http://img2.ph.126.net/xiUDYgIK-2lldngMJqo84A==/2591540110593607553.png "keil-MDK界面")
+
+图2-1 keil-MDK界面
+
+</div>
+
 ## 2.2 keil-MDK的安装与工程的建立
+
+### 2.2.1 Keil-MDK安装
+
+在新建工程之前先安装Keil-MDK软件，如果没有Keil-MDK安装包可以点击[Keil-MDK]()下载安装。在安装完成之后可以在工具栏`help->about μVision`选项中查看版本信息。μVision 是一个集代码编辑、编译、链接及下载于一体的集成开发环境(IDE),支持常见的ARM7、ARM9和ARM最新内核的Cortex-M系列。下面将进行安装过程的介绍。
+
+Keil-MDK安装过程：
+
+> 参照[Keil-MDK安装指南](http://pan.baidu.com/s/1pKTOtar)进行软件安装和库的MDK设备包安装。
+
+### 2.2.2 建立工程模板
+
+安装完Keil-MDK后，在桌面可以看到一个绿色的·`Keil-μVision5`的快捷图标，点击进入Keil就可以使用STM32的官方库来构建工程模板。
+
+1. 新建工程
+
+> 1. 点击软件快捷图标，启动软件，第一次使用会自动打开一个自带的工程文件，可以通过工具栏`project->Close Project`选项关掉。
+> 2. 在工具栏`Project->New μVision Project`新建工程文件，将新建的工程文件保存在桌面的`TEST-STM32`文件夹下(可以放在任意盘中，但要注意：工程的路径必须是英文路径，不可出现中文)，文件取名为`STM-DEMO`，点击“保存”按钮，如图2-2所示。
+
+ <div align = "center">
+
+![保存工程到TEST-STM32目录](http://img2.ph.126.net/P4zKvkRqsOCvFWugFcVGZQ==/91479367449562907.png "保存工程到TEST-STM32目录")
+
+图2-2 保存工程到TEST-STM32目录
+</div>
+
+> 3. 在弹出的窗口中选择我们使用的芯片型号，我们使用的是STM32F429ZIT6芯片，选择`STM32F4->STM32F429->STM32F429VI->STM32F429VIT×`，如图2-3所示。
+
+<div align = "center">
+
+![选择芯片型号](http://img2.ph.126.net/YrESTETryMw7FYsPKaJR3A==/6632472941561996597.png "选择芯片型号")
+
+图2-3 选择芯片型号
+
+</div>
 
 ## 2.3 ST-Link/V2仿真调试器
 
