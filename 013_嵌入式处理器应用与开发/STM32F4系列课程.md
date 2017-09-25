@@ -13,11 +13,11 @@
     - 1.4 Cortex-M4处理器简介
     - 1.5 STM32F4××x系列简介
         - 1.2.1 STM32F429I-DISCO开发板简介
-        - 1.2.2 STM32F429I-DISCO芯片解读
+        - 1.2.2 STM32F429I-DISCO芯片原理图
 
 + 第02章 开发工具
-    - 2.1 keil-MDK工具简介
-    - 2.2 keil-MDK的安装与工程的建立
+    - 2.1 开发工具简介
+    - 2.2 开发工具安装与工程的建立
     - 2.3 ST-Link/V2仿真调试器
 
 + 第03章 电路基础知识概述
@@ -44,7 +44,7 @@
 
 ## 1.1 为什么学习STM32？
 
-STM32系列芯片是由ST(意法半导体)公司基于ARM公司的Cortex-M3内核开发的32位微控制器(MCU)，采用库开发的方式快速的通过调用库中的API(应用程序接口)，就可以迅速搭建一个大型的程序。
+STM32系列芯片是由ST(意法半导体)公司基于ARM公司的Cortex-M内核开发的32位微控制器(MCU)，采用库开发的方式快速的通过调用库中的API(应用程序接口)，就可以迅速搭建一个大型的程序。
 
 在嵌入式领域STM32芯片介于低端和高端之间，相对于普通的8/16位单片机有更多的片上外设，更先进的内核结构，可以运行μC/OS、free RTOS等实时操作系统，相对于可运行Linux操作系统的高端CPU，其成本低，实时性强。STM32凭借其产品线的多样化、极高的性价比、简单易用的开发方式，迅速占领了中低端市场，被很多企业所认可。
 
@@ -104,9 +104,9 @@ STM32的外设资源丰富，就会带来寄存器的数量和复杂程度增加
 
 </div>
 
-## 1.3 Cortex-M4处理器简介
+## 1.4 Cortex-M4处理器简介
 
-### 1.3.1 Cortex-M4内部架构
+### 1.4.1 Cortex-M4内部架构
 
 Cortex是ARM公司最新系列的处理器内核名称，其目的是为当前市场提供一个标准的处理器架构，Cortex系列处理器内核作为一个完整的处理器核心，除了向用户提供标准CPU处理核心外，还提供了标准的硬件系统架构。STM32微控制器是基于“M”分支的Cortex-M系列内核，是专门为实现系统高性能与低功耗并存而设计的。
 
@@ -148,7 +148,7 @@ Cortex-M4处理器基于ARMv7-M架构(使用32位架构)，寄存器组中的内
     > * 饱和运算指令；
     > * 可选的浮点指令(单精度)。 
 
-1.3.2 Cortex-M4内核模块
+### 1.4.2 Cortex-M4内核模块
 
 如下图1-3所示为Cortex-M4的内核模块框图：
 
@@ -229,7 +229,9 @@ STM32F429ZIT6U原理图如图1-7所示：
 
 # 第02章 开发工具
 
-## 2.1 keil-MDK工具简介
+## 2.1 开发工具简介
+
+### 2.1.1 Keil-MDK简介
 
 Keil是德国知名软件公司Keil(已经并入ARM公司)开发的微控制器软件开发平台，是目前ARM内核单片机开发的主流工具。Keil提供了包括C编译器、宏汇编、连接器、库管理和一个功能强大的仿真调试器在内的完整方案，通过一个集成开发环境(μVision)将这些功能组合在一起。μVision在调试程序，软件仿真方面也有很强大的功能。如下图2-1为Keil-MDK的界面。
 
@@ -241,43 +243,194 @@ Keil是德国知名软件公司Keil(已经并入ARM公司)开发的微控制器�
 
 </div>
 
-## 2.2 keil-MDK的安装与工程的建立
+### 2.1.2 STM32CubeMX简介
 
-### 2.2.1 Keil-MDK安装
+STM32CubeMX这个工具是近年来开发STM32比较流行的，现在的STM32CubeMX的功能已经越来越强大了。
 
-在新建工程之前先安装Keil-MDK软件，如果没有Keil-MDK安装包可以点击[Keil-MDK]()下载安装。在安装完成之后可以在工具栏`help->about μVision`选项中查看版本信息。μVision 是一个集代码编辑、编译、链接及下载于一体的集成开发环境(IDE),支持常见的ARM7、ARM9和ARM最新内核的Cortex-M系列。下面将进行安装过程的介绍。
+STM32CubeMX是一个全面的软件平台，包括了ST产品的每个系列。平台包括了STM32CubeMX硬件抽象层(一个STM32抽象层嵌入式软件，确保在STM32系列最大化的便携性)和一套的中间件组件(RTOS, USB, FatFs，TCP/IP，Graphics，等等)。STM32CubeMX是一个配置STM32代码的工具，它把很多东西都封装的比较好，例如：硬件抽象层、中间层、示例代码等。使开发者从标准外设库开发解脱了出来，减少了很多繁琐的配置工作。之前的经典标准外设库开发STM32对硬件底层的知识要求比较高，感兴趣的可以查找标准外设库开发资料进行相关知识的了解。
+
+> STM32CubeMX的特点：
+> 
+> 1. 直观的STM32微控制器的选择和时钟树配置；
+> 2. 微控制器图形化配置外围设备和中间件的功能模式和初始化参数；
+> 3. C代码工程生成器覆盖了STM32 微控制器初始化编译软件，如IAR、KEIL、GCC。
+
+对于STM32设计使用STM32Cube可以加速开发过程，并为以后的产品移植打下良好的基础。图2-2为STM32CubeMX界面：
+
+<div align = "center">
+
+![STM32CubeMX界面](http://img0.ph.126.net/DPy6jhDQjG8Qx2ADNApO1Q==/6632581793213182818.png "STM32CubeMX界面")
+
+图2-2 STM32CubeMX界面
+
+</div>
+
+
+## 2.2 开发软件的安装与工程的建立
+
+### 2.2.1 Keil-MDK的安装
+
+在新建工程之前先安装Keil-MDK软件，如果没有Keil-MDK安装包可以点击[Keil-MDK]()下载安装，也可以到ST公司官网进行下载。在安装完成之后可以在工具栏`help->about μVision`选项中查看版本信息。μVision 是一个集代码编辑、编译、链接及下载于一体的集成开发环境(IDE),支持常见的ARM7、ARM9和ARM最新内核的Cortex-M系列。下面将进行安装过程的介绍。
 
 Keil-MDK安装过程：
 
 > 参照[Keil-MDK安装指南](http://pan.baidu.com/s/1pKTOtar)进行软件安装和库的MDK设备包安装。
 
-### 2.2.2 建立工程模板
+### 2.2.2 STM32CubeMX的安装
 
-安装完Keil-MDK后，在桌面可以看到一个绿色的·`Keil-μVision5`的快捷图标，点击进入Keil就可以使用STM32的官方库来构建工程模板。
-
-1. 新建工程
-
-> 1. 点击软件快捷图标，启动软件，第一次使用会自动打开一个自带的工程文件，可以通过工具栏`project->Close Project`选项关掉。
-> 2. 在工具栏`Project->New μVision Project`新建工程文件，将新建的工程文件保存在桌面的`TEST-STM32`文件夹下(可以放在任意盘中，但要注意：工程的路径必须是英文路径，不可出现中文)，文件取名为`STM-DEMO`，点击“保存”按钮，如图2-2所示。
-
- <div align = "center">
-
-![保存工程到TEST-STM32目录](http://img2.ph.126.net/P4zKvkRqsOCvFWugFcVGZQ==/91479367449562907.png "保存工程到TEST-STM32目录")
-
-图2-2 保存工程到TEST-STM32目录
-</div>
-
-> 3. 在弹出的窗口中选择我们使用的芯片型号，我们使用的是STM32F429ZIT6芯片，选择`STM32F4->STM32F429->STM32F429VI->STM32F429VIT×`，如图2-3所示。
+1. 由于STM32CubeMX软件是基于JAVA环境运行的，要求JRE最低版本是1.7.0_45,因此需要安装JRE才能使用。可以从[oracle公司官方下载](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)。如图2-3所示：
 
 <div align = "center">
 
-![选择芯片型号](http://img2.ph.126.net/YrESTETryMw7FYsPKaJR3A==/6632472941561996597.png "选择芯片型号")
+![JRE](http://img2.ph.126.net/ojfoETwri78U7r6bajQvJQ==/6632492732771328239.png "JRE")
 
-图2-3 选择芯片型号
+图2-3 JRE下载
 
 </div>
 
+2. STM32CubeMX工具、库下载，可以从ST公司[官方下载](http://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-configurators-and-code-generators/stm32cubemx.html)，也可以从我的[网盘下载](http://pan.baidu.com/s/1nvwsP5J)。如图2-4和2-5是STM32CubeMX的官方软件、库下载：
+
+<div align = "center">
+
+![STM32CubeMX官方软件下载](http://img1.ph.126.net/ehIToqXgG6Z6ccpoQ_6TdQ==/1037235289197384766.png "STM32CubeMX官方软件下载")
+
+图2-4 STM32CubeMX官方软件下载
+
+![STM32CubeMX官方库下载](http://img2.ph.126.net/WDcQRuGQoNamYEHgNrvYKA==/2605895334405877208.png "STM32CubeMX官方库下载")
+
+图2-5 STM32CubeMX官方库下载
+
+</div>
+
+3. STM32CubeMX安装过程：
+
+> * 首先安装JRE，直接默认安装路径，不要更改，这里不进行详细的介绍(原因：安装过程简单)。
+> * 进行STM32CubeMX软件安装，安装过程也很简单，这里进行简单的过程介绍。
+>> 1. 解压下载的文件，双击`setup.exe`。
+>
+>> ![安装过程1](http://img0.ph.126.net/6o_OqqKBr4zsfRIatMcadg==/1274237219587776663.png "安装过程1")
+>
+>> 2. 直接点击`Next`，选择`接受`，再次点击`Next` 。
+> 
+>> ![安装过程2](http://img1.ph.126.net/JP95haRqQBQgp8E6VRUTmg==/6632695042908247696.png "安装过程2")
+>
+>> 3. 选择安装路径，点击`Next`。提示创建安装目录，点击`确定`。
+>
+>> ![安装过程3](http://img2.ph.126.net/LSfoI9x9KNdVffTpqijdUw==/6632519121050403794.png "安装过程3")
+>
+>> 4. 等待安装，完成后点击`Next`。
+>
+>> ![安装过程4](http://img2.ph.126.net/M4SoNMLz44uNpkbrjvq1kQ==/6632563101515501246.png "安装过程4")
+>
+>> 5. 点击`Done`，完成安装，进入STM32CubeMX界面。
+>
+>> ![安装过程5](http://img1.ph.126.net/uVEPqyaSv7XFh9R44-v6fQ==/6632737923861731113.png "安装过程5")
+
+4. STM32CubeMX库的导入
+
+> * 在线安装
+>> 打开安装好的STM32CubeMX软件，进入库管理界面(`Help->Install New Libraries`),选择需要安装的固件库，点击`Install New`进行安装。(在线安装方式)，这里我们使用本地固件库安装。
+> 
+>> ![在线安装](http://img0.ph.126.net/u73dMvgE8oOGUpyR5Mecmw==/6632623574652441870.png "在线安装") 
+>
+> * 导入本地安装库
+>
+>> 1. 下载好需要安装的离线包，在库管理界面(`Help->Install New Libraries`)，点击右下角的`From Local->选择框(选择下载的离线包文件)`。
+>
+>> ![本地安装库1](http://img1.ph.126.net/LZXFwVNuFx0zF62x0Ja_1g==/2602236159708638536.png "本地安装库1")
+>
+>> 2. 点击`Open`，进行解压安装过程，直到完成安装。
+>
+>> ![本地安装库2](http://img1.ph.126.net/vToXbhUf3G9wPdQLHNfOUA==/6632627972698953001.png "本地安装库2")
+>
+> * 解压离线包
+>
+> 这种方式是最方便的安装方式，需要知道的一点是STM32CubeMX的安装路径。 
+>
+>> 1. 查看库安装路径的方式：`Help->Updater Settings`可以看到库指定路径。
+>
+>> ![安装路径](http://img1.ph.126.net/MqDGJxLhzTY5CPhQz9RVgg==/6632357492841114775.png "安装路径")
+>
+>> 2. 将解压文件放入默认的路径下：`C:\Users\Administrator\STM32Cube\Repository`。
+> 
+>> ![路径下的文件](http://img1.ph.126.net/aBSQbuERomh9bzc7Ps3V6A==/6632437757189946340.png "路径下的文件")
+
+
+### 2.2.3 建立工程模板
+
+安装完Keil-MDK后，在桌面可以看到一个绿色的·`Keil-μVision5`的快捷图标，点击进入Keil就可以使用STM32的官方库来构建工程模板。这里我们使用STM32CubeMX进行工程的建立。
+
+点击图标进入STM32CubeMX主界面，这里我们进行一些简单的介绍。
+
+主界面会看到的有：
+
+> 1. 菜单栏：没有新建工程只有4个主菜单，在新建工程之后会有5个菜单。
+> 2. 快捷按钮栏：比如一些新建工程，导入工程之类的。
+> 3. New Project(新建工程)：我们新建工程就点击该按钮。
+> 4. Load Project(导入工程)：如果之前有建好的工程，可以点击该按钮打开。
+> 5. Help(帮助)：可点击该按钮打开帮助文档。
+
+1. 新建工程
+
+> 1. 打开STM32CubeMX软件，点击`New Project`。
+> 2. 选择芯片型号，我们这里使用STM32F429ZIT×x芯片，点击`OK`.
+> 
+>> ![CubeMX新建工程](http://img2.ph.126.net/2Yg-Ej0ANtNGfL_aECkByw==/6632257437282994175.png "CubeMX新建工程")
+>
+> 3.设置软件工程参数。`Project->Settings`进入设置框，设置好参数，点击`OK`。
+> 
+>> ![设置工程参数](http://img0.ph.126.net/6C32mxDXnm8FCOYW95_cRA==/6632536713236447838.png "设置工程参数")
+>
+> 4. 点击保存，工程就基本算是完成了，根据配置资源的不同，中间需要根据实际情况来配置才能使用。
+> 5. 生成工程代码。配置好之后，我们可以点击该按钮，就可以生产软件代码。
+>
+>> ![生成工程代码](http://img1.ph.126.net/mNb7QQ-kG4dpHbokCeHtmw==/2595762235244311087.png "生成工程代码")
+> 
+> 6. 使用Keil-MDK打开工程文件。
+>
+>> ![生成的工程文件](http://img1.ph.126.net/qUXH8RFXp5XIPoPs9gnWCg==/6632707137536154508.png "生成的工程文件")
+
+至此，你已经对STM32CubeMX创建工程用了一定的了解，后续我们会通过示例进行功能性的配置，从而对STM32进行深入的学习。
+
 ## 2.3 ST-Link/V2仿真调试器
+
+STM32F429I-DISCO上集成了ST-Link电路，通过ST-Link进行程序的烧录和调试。
+
+ST-LINK /V2指定的SWIM标准接口和JTAG / SWD标准接口，其主要功能有： 
+1. 编程功能：可烧写FLASH ROM、EEPROM、AFR等。
+2. 仿真功能：支持全速运行、单步调试、断点调试等各种调试方法，可查看IO状态，变量数据等等。
+3. 仿真性能：采用USB2.0接口进行仿真调试，单步调试，断点调试，反应速度快。     
+4. 编程性能：采用USB2.0接口，进行SWIM/JTAG/SWD下载，下载速 度快。
+
+### 2.3.1 ST-Link驱动获取与安装
+
+> * 从ST[官网下载ST驱动](http://www.st.com/content/st_com/en/products/development-tools/hardware-development-tools/development-tool-hardware-for-mcus/debug-hardware-for-mcus/debug-hardware-for-stm32-mcus/st-link-v2.html)。选择STM32 ST-Link utility(包括驱动和烧录程序的软件)。
+>
+>> ![ST-Link下载](http://img1.ph.126.net/Y1AajiYn5X-p4EhqDJOtZw==/6632685147303601186.png "ST-Link下载")
+
+> * ST-Link安装过程简单，直接点击`Next`，将驱动安装上。这里不进行图文说明了。
+>
+>> ![ST-Link界面](http://img2.ph.126.net/P4a_0x3v0YadNPchxmiYzQ==/6632229949492301147.png "ST-Link界面")
+
+### 2.3.2 Keil-MDK配置驱动
+
+使用STM32CubeMX一般会将我们使用芯片的配置信息直接生成，当然我们也可以进行手动配置，这里进行详细的介绍。
+
+> 1. 点击`魔术棒`打开配置界面，进入`Debug`,选择我们需要的驱动。
+>
+>> ![Keil配置ST驱动](http://img1.ph.126.net/GdKFBrOBkkdzUg7gHTcZrw==/6632633470257095530.png "Keil配置ST驱动")
+>
+>> 2. 点击`Setting`,进入`flash Download`,勾选`reset and run`(在上传程序后让开发板自动重启程序)。如果在下载程序时出现`Error：Flash download failed-"cortex-M4"`错误，检查`Flash`的设置。
+>
+>> ![Flash配置](http://img0.ph.126.net/-0UjpN_o8XCFXcZHnN9upg==/6632417965980651603.png "Flash配置")
+>
+>> 3. 点击`Flash->output`，勾选`create HEX`。
+>
+>> ![生成HEX](http://img2.ph.126.net/oTzBA_qFfVJNnUtIVifbTA==/6632452050841114550.png "生成HEX")
+>
+>> 4. 点击`download`,就可以进行程序的下载了。
+>
+>> ![程序下载](http://img2.ph.126.net/9KBUYTc6aUlEufQuk4pIdA==/6632476240096920530.png "程序下载")
 
 # 第03章 电路基础知识概述
 
