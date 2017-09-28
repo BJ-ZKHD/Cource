@@ -764,6 +764,136 @@ ST-LINK /V2指定的SWIM标准接口和JTAG / SWD标准接口，其主要功能�
 
 ## 4.2 STM32---GPIO工作原理
 
+### 4.2.1 GPIO入门之流水灯
+
+首先我们使用STM32CubeMX进行工程的建立。
+
+1. 新建工程。打开STM32CubeMX软件，点击`New Project`，选择对应的MCU(STM32F429ZIT×)。
+2. 双击选择的MCU进入工程界面(可能使用的CubeMX版本不同，但内容都是相同的)，如图所示。
+
+    ![Demo工程的建立](http://img2.ph.126.net/5LNaSpqGvM4xpxqojyRlvw==/6632444354259751769.png "Demo工程的建立")
+3. 配置外设。
+   
+    * RCC时钟的选择。选择HSE(外部告诉时钟)为`Crystal/Ceramic Resonator`(晶振/陶瓷谐振器)。
+    * GPIO口功能选择，由于STM32F429I-DISCO开发板上的LED灯不多，这里我们使用默认的配置端口：PG13、PG14。将这两个端口对应的管脚设置为`GPIO_Output`模式。(注：黄色引脚为该功能的GPIO已经被用于其他功能，绿色表示该管脚已使用。)
+
+        ![Demo配置外设和RCC](http://img1.ph.126.net/2afMbcHH2NVdKvCjK5F7Ww==/6632547708352757698.png "Demo配置外设和RCC")
+
+4. 时钟配置
+
+    * 时钟配置采用的图形配置，直观简单，不用使用手册查找相对应的配置。STM32F429的时钟最高位180MHz，在这里只有在HCLK处输入180，软件可自动配置。
+
+        ![Demo时钟配置](http://img0.ph.126.net/vRJ4o7_3FQ3yni_fx1-3qA==/6632720331675719856.png "Demo时钟配置")
+
+5. 功能外设配置。
+
+    我们可以看到有以下几块区域：
+    
+    * Multimedia(多媒体)：音频、视频、LCD配置。
+    * Control(控制)：定时器
+    * Analog(模拟)： DAC、ADC
+    * Connectivity(通讯连接)：SPI、IIC、USB、ETH
+    * System(系统)：DMA(直接存储器存取)、GPIO、NVIC、RCC、看门狗
+    * middlewares(中间件)：FreeRTOS、FATFS、LwIP、USB
+    
+    这里只需配置GPIO，其他的没有用到，这里先不介绍。
+
+    ![DemoGPIO配置](http://img0.ph.126.net/zjMr77LilD8hlg_dUXOv1A==/6632756615559446583.png "DemoGPIO配置")
+
+6. 生成工程代码。(注：工程的相关配置在第二章已经介绍，忘了的可以很快地复习一下)
+
+7. 添加应用程序。
+
+    * 点击`Build`按钮，`Build Output`会给出错误或成功提醒。
+    * 在`gpio.c`文件中可以找到LED管脚的初始化函数，可以看到管脚的配置信息。
+
+    ![gpio.c LED管脚的初始化](http://img1.ph.126.net/XbRnJU7RWn8lFDn0dqdTgg==/6632367388445800453.png "gpio.c LED管脚的初始化")
+
+    * 在`stm32f4××_hal_gpio.h`头文件可以看到GPIO的操作函数。(注：函数内部可以右键进入.c中查看)
+    * 我们选用`HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);`函数通过高低电平的反转实现LED等的闪烁。在main函数的`while`中添加LED流水灯效果程序。
+
+        ![while中添加流水灯程序](http://img1.ph.126.net/PN1qiWTQeXnU19HPQSL5uw==/2595480760267633183.png "while中添加流水灯程序")
+
+    * 最后编译、下载到开发板上，就可以看到效果了。
+
+### 4.2.2 深入分析流水灯例程
+
+大家通过自己的动手，应该已经熟悉了STM32CubeMX配置芯片信息了，也感觉单片机的学习非常的简单，其实不是这样的，STM32CubeMX通过库函数，将许多底层配置信息都进行了封装，这样其实不利于我们初学者对单片机的学习。在这里，我们就上一节流水灯的程序进行详细的解读。
+
+配合使用《STM32F4××z中文参考手册》进行学习，效果更佳。
+
+1. 什么是GPIO？
+
+> GPIO是通用输入输出端口的总称，也就是STM32可控制的引脚。STM32的GPIO引脚与外部设备连接起来，从而实现与外部通讯、控制以及数据采集的功能。
+
+STM32F429ZIT6芯片的GPIO被分成GPIOA、GPIOB、GPIOC、GPIOD、GPIOE、GPIOF、GPIOG 7组，每组15个引脚，芯片有144个引脚，其中GPIO就占了很大一部分，所有的GPIO都具有基本的输入输出功能。最基本的输出功能是芯片控制引脚输出高、低电平，来实现开关的控制。正如上一节我们把GPIO引脚接入到LED灯，就可以控制LED灯的亮灭。
+
+2. GPIO库函数配置
+
+打开上一节流水灯工程，进入`stm32f4××_hal_gpio.h`，可以看到GPIO输入输出的配置函数：
+
+```
+void  HAL_GPIO_Init(GPIO_TypeDef  *GPIOx, GPIO_InitTypeDef *GPIO_Init);
+void  HAL_GPIO_DeInit(GPIO_TypeDef  *GPIOx, uint32_t GPIO_Pin);
+
+GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+void HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+HAL_StatusTypeDef HAL_GPIO_LockPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+void HAL_GPIO_EXTI_IRQHandler(uint16_t GPIO_Pin);
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
+
+```
+
+* void  HAL_GPIO_Init()函数：
+
+    * 函数原型：`void  HAL_GPIO_Init(GPIO_TypeDef  *GPIOx, GPIO_InitTypeDef *GPIO_Init);`
+    * 作用：初始化GPio的模式和速度，也就是设置相应的GPIO寄存器的CRH和CRL值。
+        
+        * 第一个参数：`GPIO_TypeDef`是指针变量，确定是哪个GPIO，取值范围是`GPIOA~G`。
+        * 第二个参数：`GPIO_InitTypeDef`是结构体指针变量，用来确定GPIO×所对应的引脚以及引脚的模式和输出最大速度。
+
+        ```
+        typedef struct
+        {
+            uint32_t Pin;      
+            uint32_t Mode;     
+            uint32_t Pull;    
+            uint32_t Speed;     
+            uint32_t Alternate; 
+
+        }GPIO_InitTypeDef;
+        ```
+3. GPIO的应用
+
+    我们进入到`gpio.c`中可以看到如下的配置信息：
+
+    ```
+    GPIO_InitTypeDef GPIO_InitStruct;             //定义结构体变量
+
+    /* GPIO Ports Clock Enable */
+    __HAL_RCC_GPIOH_CLK_ENABLE();
+    __HAL_RCC_GPIOG_CLK_ENABLE();                 //使能端口G、H的时钟
+
+     /*Configure GPIO pin Output Level */
+    HAL_GPIO_WritePin(GPIOG, LED_3_Pin|LED_4_Pin, GPIO_PIN_RESET);    //初始化端口状态为低电平
+
+    /*Configure GPIO pins : PGPin PGPin */
+    GPIO_InitStruct.Pin = LED_3_Pin|LED_4_Pin;                        //选择PG13、14引脚
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;                       //选择引脚模式为推挽输出
+    GPIO_InitStruct.Pull = GPIO_NOPULL;                               
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;                     //IO口的输出速度为LOW (小于2MHz)
+    HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);                          //应用
+
+    ```
+
+### 4.2.3 GPIO的工作原理
+
+1. GPIO的基本结构：
+
+    ![GPIO的基本结构图](http://img1.ph.126.net/yCIDkYpB7JrzNVxDfOxvGA==/6632655460489684543.png "GPIO的工作原理图")
+    通过GPIO的硬件结构框图，我们就可以从整体上深入的了解GPIO外设及它的各种应用模式。上从最右端看起，最右端就是代表STM32芯片引出的GPIO引脚，其余部件都位于芯片的内部。
+
 
 
 ## 4.3 STM32---时钟系统
