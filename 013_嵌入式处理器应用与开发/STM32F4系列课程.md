@@ -568,7 +568,7 @@ ST-LINK /V2指定的SWIM标准接口和JTAG / SWD标准接口，其主要功能�
 
     封装：一般使用0603和0805尺寸。
 
-    ![贴片电阻]( "贴片电阻")
+    ![贴片电阻](http://img0.ph.126.net/vJLxCCxRX4b1zBU7YXaUkA==/6632427861585320061.png "贴片电阻")
 
     ![贴片元器件封装](http://img1.ph.126.net/AV5iYnC54wZDkU3S4Rsdew==/6632582892724827526.png "贴片元器件封装")
 
@@ -629,11 +629,272 @@ ST-LINK /V2指定的SWIM标准接口和JTAG / SWD标准接口，其主要功能�
 >   * 电解电容一般具有极性，极性电容不能用于交流电路，可用于直流与脉动直流电路，使用时尽量远离发热元件。
 >   * 用于高频电路时，引脚应尽量短。
 
+### 3. 电感
+
+* 定义：能够把电能转化为磁能而存储起来的元件。它只阻碍电流的变化。
+* 结构：用导线在绝缘骨架上单层或多层绕制而成的，也叫电感线圈。
+* 单位：亨(`H`)
+* 作用：作为线圈--主要作用是滤波、聚焦、偏转、延迟、补偿、与电容配合用于调谐、限波、选频、震荡。
+
+    作为变压器--主要用于偶合信号、变压、阻抗匹配等。
+* 符号：
+
+    ![电感符号](http://img2.ph.126.net/CS-57yU25cMmuAlknJ-_yw==/2601110259801827258.png "电感符号")
+
+* 电感的主要技术参数
+    
+    * 标称电感量及偏差
+    * 固有电感与直流电阻
+    * 品质因数
+    * 额定电流
+    * 稳定性
+
+    ![电感](http://img1.ph.126.net/A2QUg7SzR6Prs37KtriYSA==/1276207544424765574.jpg "电感")
+
+### 3.2.2 二极管
+
+* 定义：半导体二极管又称为晶体二极管，是一种能够单向传导电流的电子元件。
+* 结构：在半导体二极管内部有一个`PN结`、两个引线端子封装而成。
+* 符号：
+
+    ![二极管符号](http://img1.ph.126.net/laaa9BFBTAx05ZqYXMkvyA==/30680772480115126.png "二极管符号")
+
+* 特性：正向特性--特性曲线的第一象限部分，曲线呈指数曲线形状，非线性。正向电压很低时正向电流几乎为`0`,这一区间称为“死区”，对应的电压范围称为死区电压或阈值电压。锗管的死区电压范围大约为0.1V，硅管的死区电压约为0.5V。
+
+    反向特性：反向电流很小，但当反向电压过高时，`PN`结发生击穿，反向电流急剧增大。
+
+    ![二极管的特性曲线](http://img2.ph.126.net/EALg4IRlykxNOG4Uj1-SwA==/6632295920189995457.png "二极管的特性曲线")
+
+* 二极管的分类
+
+    * 按材料分为：锗二极管、硅二极管、砷化镓二极管。
+    * 按结构分为：点接触型二极管和面接触型二极管。
+    * 按用途分为：整流二极管、检波二极管、变容二极管、稳压二极管、开关二极管、发光二极管等。
+
+    
+>   * 整流二极管：作用是将交流电源整流成脉动直流电，它是利用二极管的单向导电特性工作的。因为整流二极管正向工作电流大，工艺上多采用面接触结构。由于这种结构的二极管结电容较大，因此整流二极管主要有全密封金属结构封装和塑料封装两种封装形式。
+
+![整流二极管的工作原理](http://img1.ph.126.net/Ytrw3-S-8lVg6e59SnF51Q==/6632644465373397943.png "整流二极管的工作原理")
+
+> * 检波二极管：调幅高频无限电信号的波形是上下对称的，要想取出有用的信号必须检波，就是通过二极管单向导通的原理取出其中的一半来进行放大，如果没有检波，则正负抵消了就没有信号了。
+
+![检波二极管的工作原理](http://img0.ph.126.net/rXQ91Zq_k8lbTND9nueZNg==/6632631271233864543.png "检波二极管的工作原理")
+
+> * 稳压二极管：利用二极管的反向击穿特性制成的。在电路中其两端的电压保持基本不变，起到稳定电压的作用。常用的稳压管有2CW55、2CW56等。
+
+![稳压二极管的工作原理](http://img2.ph.126.net/vYNtbFBspa-hEkJi_k2L8A==/1036672339244001581.png "稳压二极管的工作原理")
+
+> * 开关二极管：作用是利用二极管的单向导电特性来完成的，在给二极管加正向偏压时，处于导通状态，在加反向偏压时处于截止状态，在电路中起到接通电流、关断电流的作用。
+
+> * 发光二极管：又称为LED，在电子产品中应用最多的二极管。例如：电子时钟表盘上的数字、组成超大电视屏幕上的图像、用于点亮交通信号灯。
+
+![发光二极管实物图](http://img2.ph.126.net/oNCINo70GgsQi4PsWDuKFw==/6632728028257108796.png "发光二极管实物图")
+
+### 3.2.3 三极管
+
+* 定义：又称为半导体三极管，是一种控制电流的半导体器件。
+* 结构：三极管是在一块半导体基片上制作两个相距很近的`PN结`，两个`PN结`把整块半导体分成三部分，中间部分是基区，两侧部分是发射区和集电区。
+* 类型：PNP、NPN型。
+* 符号：
+
+    ![三极管符号](http://img0.ph.126.net/2NimTki5TotCpnxNbw41Iw==/6632599385399254317.png "三极管符号")
+
+* 作用：是把微弱信号放大成幅度值较大的电信号具有电流放大的作用。也用作无触点开关。
+
+    ![三极管实物图](http://img0.ph.126.net/o-3pSiXPGH8Gx11OW4kZsw==/6632386080143442039.png "三极管实物图")
+
+* 三极管的分类：
+
+    * 按结构分：点接触型和面接触型。
+    * 工作频率分：有高频三极管和低频三极管、开关管。
+    * 按封装类型分：有金属封装和塑料封装等形式。
+    按`PN结`分：PNP型和NPN型。
+
+* 三极管的主要参数
+
+    选用三极管需要了解三极管的主要参数，根据实践经验，这里主要介绍三极管的四个极限参数：ICM、BVCEO、PCM及fT。
+    
+    * ICM是集电极最大允许电流。三极管工作时当它的集电极电流超过一定数值时，它的电流放大系数β将下降。为此规定三极管的电流放大系数β变化不超过允许值时的集电极最大电流称为ICM。在使用中当集电极电流IC超过ICM时不至于损坏三极管，但会使β值减小，影响电路的工作性能。
+    * BVCEO是三极管基极开路时，集电极-发射极反向击穿电压。如果在使用中加在集电极与发射极之间的电压超过这个数值时，将可能使三极管产生很大的集电极电流，这种现象较击穿。三极管击穿后会使性能永久损坏或性能下降。
+    * PCM是集电极最大允许耗散功率。三极管在工作时，集电极电流在集电结上会产生热量而使三极管发热。如果耗散功率过大，三极管会被烧坏。使用三极管时，如果长时间耗散功率大于PCM，将会损坏三极管。
+    * fT是三极管的特征频率。随着工作频率的升高，三极管的放大能力将会下降，对应于β = 1时的频率fT叫作三极管的特征频率。
+
+    * 常用的开关三极管
+
+    开关三极管的外形与普通三极管相同，主要用于电路的关与通的转换。具有开关速度快、寿命长，能够完成断路和接通作用。普遍用于电源/稳压器电路、驱动电路、振荡电路、功率放大电路、脉冲放大电路等。
+        
+    > * 常用的小功率开关管有3AKl-5、3AKll-15、3AKl9-3AK20、3AK20-3AK22、3CKl-4、3CK7、3CK8、3DK2-4、3DK7-9, 8050,8550等
+    > * 常用的大功率开关管有：3AK5l-56、3AK61-3AK66、3CK37、3CKl04-106、3CK108-109、3DKl0-12、3DK35、3DK32、3DK36-37等。
+
 # 第04章 STM32驱动开发
+
+本章节从示例程序出发，讲解如何通过STM32F429I-DISCO单片机的片上外设，能够更快的掌握其他系列的使用方法。
 
 ## 4.1 STM32F429I-DISCO开机测试
 
+按照前面第二章的介绍对Keil-MDK和ST-Link进行安装和配置。将ST公司的提供的STM32F429I-DISCO的官方示例使用Keil-MDK打开、编译、下载到开发板上就可以了。可以点击[STM32F429I-DISCO开发板](http://pan.baidu.com/s/1i5b2zlF) 密码：txt0，获取官方示例。
+
+操作步骤：
+
+1. 使用数据线给开发板上电，同时数据线也是ST-Link的下载线。
+2. 使用Keil打开官方示例，可以看到主程序对当前工程的实现功能进行了[详细的注释](http://bbs.21ic.com/icview-700932-1-1.html)。
+2. 点击Keil-MDK工具栏第一个按钮，编译当前活动文件是否有语法错误。
+3. 点击工具栏的第三个按钮，也就是编译，完成后点击Load按钮，就可以将编译好的程序下载到开发板上。
+
+<div align = "center">
+
+![程序下载](http://img2.ph.126.net/6u-mCqEvKoPkAL04gnajjQ==/6632469643027180010.png "程序下载")
+</div>
+
+4. 下载成功后，程序就会自动运行，如果不能，检查一下配置信息`Debug->Settings`中的设置。
+
+<div align = "center">
+
+![程序下载成功提示](http://img1.ph.126.net/qr-tI_Ut2GbIzLRbV8wHow==/1285214743679508454.png "程序下载成功提示")
+</div>
+
+5. 这样，我们就完成了初次进行开发板的操作了。
+
+<div align = "center">
+
+![实物图](http://img0.ph.126.net/D4HarklZbMNNT3sqtGp0Ug==/2591258635616964003.jpg "实物图")
+</div>
+
+接下来我们就进入STM32内部进行学习吧！
+
 ## 4.2 STM32---GPIO工作原理
+
+### 4.2.1 GPIO入门之流水灯
+
+首先我们使用STM32CubeMX进行工程的建立。
+
+1. 新建工程。打开STM32CubeMX软件，点击`New Project`，选择对应的MCU(STM32F429ZIT×)。
+2. 双击选择的MCU进入工程界面(可能使用的CubeMX版本不同，但内容都是相同的)，如图所示。
+
+    ![Demo工程的建立](http://img2.ph.126.net/5LNaSpqGvM4xpxqojyRlvw==/6632444354259751769.png "Demo工程的建立")
+3. 配置外设。
+   
+    * RCC时钟的选择。选择HSE(外部告诉时钟)为`Crystal/Ceramic Resonator`(晶振/陶瓷谐振器)。
+    * GPIO口功能选择，由于STM32F429I-DISCO开发板上的LED灯不多，这里我们使用默认的配置端口：PG13、PG14。将这两个端口对应的管脚设置为`GPIO_Output`模式。(注：黄色引脚为该功能的GPIO已经被用于其他功能，绿色表示该管脚已使用。)
+
+        ![Demo配置外设和RCC](http://img1.ph.126.net/2afMbcHH2NVdKvCjK5F7Ww==/6632547708352757698.png "Demo配置外设和RCC")
+
+4. 时钟配置
+
+    * 时钟配置采用的图形配置，直观简单，不用使用手册查找相对应的配置。STM32F429的时钟最高位180MHz，在这里只有在HCLK处输入180，软件可自动配置。
+
+        ![Demo时钟配置](http://img0.ph.126.net/vRJ4o7_3FQ3yni_fx1-3qA==/6632720331675719856.png "Demo时钟配置")
+
+5. 功能外设配置。
+
+    我们可以看到有以下几块区域：
+    
+    * Multimedia(多媒体)：音频、视频、LCD配置。
+    * Control(控制)：定时器
+    * Analog(模拟)： DAC、ADC
+    * Connectivity(通讯连接)：SPI、IIC、USB、ETH
+    * System(系统)：DMA(直接存储器存取)、GPIO、NVIC、RCC、看门狗
+    * middlewares(中间件)：FreeRTOS、FATFS、LwIP、USB
+    
+    这里只需配置GPIO，其他的没有用到，这里先不介绍。
+
+    ![DemoGPIO配置](http://img0.ph.126.net/zjMr77LilD8hlg_dUXOv1A==/6632756615559446583.png "DemoGPIO配置")
+
+6. 生成工程代码。(注：工程的相关配置在第二章已经介绍，忘了的可以很快地复习一下)
+
+7. 添加应用程序。
+
+    * 点击`Build`按钮，`Build Output`会给出错误或成功提醒。
+    * 在`gpio.c`文件中可以找到LED管脚的初始化函数，可以看到管脚的配置信息。
+
+    ![gpio.c LED管脚的初始化](http://img1.ph.126.net/XbRnJU7RWn8lFDn0dqdTgg==/6632367388445800453.png "gpio.c LED管脚的初始化")
+
+    * 在`stm32f4××_hal_gpio.h`头文件可以看到GPIO的操作函数。(注：函数内部可以右键进入.c中查看)
+    * 我们选用`HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);`函数通过高低电平的反转实现LED等的闪烁。在main函数的`while`中添加LED流水灯效果程序。
+
+        ![while中添加流水灯程序](http://img1.ph.126.net/PN1qiWTQeXnU19HPQSL5uw==/2595480760267633183.png "while中添加流水灯程序")
+
+    * 最后编译、下载到开发板上，就可以看到效果了。
+
+### 4.2.2 深入分析流水灯例程
+
+大家通过自己的动手，应该已经熟悉了STM32CubeMX配置芯片信息了，也感觉单片机的学习非常的简单，其实不是这样的，STM32CubeMX通过库函数，将许多底层配置信息都进行了封装，这样其实不利于我们初学者对单片机的学习。在这里，我们就上一节流水灯的程序进行详细的解读。
+
+配合使用《STM32F4××z中文参考手册》进行学习，效果更佳。
+
+1. 什么是GPIO？
+
+> GPIO是通用输入输出端口的总称，也就是STM32可控制的引脚。STM32的GPIO引脚与外部设备连接起来，从而实现与外部通讯、控制以及数据采集的功能。
+
+STM32F429ZIT6芯片的GPIO被分成GPIOA、GPIOB、GPIOC、GPIOD、GPIOE、GPIOF、GPIOG 7组，每组15个引脚，芯片有144个引脚，其中GPIO就占了很大一部分，所有的GPIO都具有基本的输入输出功能。最基本的输出功能是芯片控制引脚输出高、低电平，来实现开关的控制。正如上一节我们把GPIO引脚接入到LED灯，就可以控制LED灯的亮灭。
+
+2. GPIO库函数配置
+
+打开上一节流水灯工程，进入`stm32f4××_hal_gpio.h`，可以看到GPIO输入输出的配置函数：
+
+```
+void  HAL_GPIO_Init(GPIO_TypeDef  *GPIOx, GPIO_InitTypeDef *GPIO_Init);
+void  HAL_GPIO_DeInit(GPIO_TypeDef  *GPIOx, uint32_t GPIO_Pin);
+
+GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+void HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+HAL_StatusTypeDef HAL_GPIO_LockPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+void HAL_GPIO_EXTI_IRQHandler(uint16_t GPIO_Pin);
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
+
+```
+
+* void  HAL_GPIO_Init()函数：
+
+    * 函数原型：`void  HAL_GPIO_Init(GPIO_TypeDef  *GPIOx, GPIO_InitTypeDef *GPIO_Init);`
+    * 作用：初始化GPio的模式和速度，也就是设置相应的GPIO寄存器的CRH和CRL值。
+        
+        * 第一个参数：`GPIO_TypeDef`是指针变量，确定是哪个GPIO，取值范围是`GPIOA~G`。
+        * 第二个参数：`GPIO_InitTypeDef`是结构体指针变量，用来确定GPIO×所对应的引脚以及引脚的模式和输出最大速度。
+
+        ```
+        typedef struct
+        {
+            uint32_t Pin;      
+            uint32_t Mode;     
+            uint32_t Pull;    
+            uint32_t Speed;     
+            uint32_t Alternate; 
+
+        }GPIO_InitTypeDef;
+        ```
+3. GPIO的应用
+
+    我们进入到`gpio.c`中可以看到如下的配置信息：
+
+    ```
+    GPIO_InitTypeDef GPIO_InitStruct;             //定义结构体变量
+
+    /* GPIO Ports Clock Enable */
+    __HAL_RCC_GPIOH_CLK_ENABLE();
+    __HAL_RCC_GPIOG_CLK_ENABLE();                 //使能端口G、H的时钟
+
+     /*Configure GPIO pin Output Level */
+    HAL_GPIO_WritePin(GPIOG, LED_3_Pin|LED_4_Pin, GPIO_PIN_RESET);    //初始化端口状态为低电平
+
+    /*Configure GPIO pins : PGPin PGPin */
+    GPIO_InitStruct.Pin = LED_3_Pin|LED_4_Pin;                        //选择PG13、14引脚
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;                       //选择引脚模式为推挽输出
+    GPIO_InitStruct.Pull = GPIO_NOPULL;                               
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;                     //IO口的输出速度为LOW (小于2MHz)
+    HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);                          //应用
+
+    ```
+
+### 4.2.3 GPIO的工作原理
+
+1. GPIO的基本结构：
+
+    ![GPIO的基本结构图](http://img1.ph.126.net/yCIDkYpB7JrzNVxDfOxvGA==/6632655460489684543.png "GPIO的工作原理图")
+    通过GPIO的硬件结构框图，我们就可以从整体上深入的了解GPIO外设及它的各种应用模式。上从最右端看起，最右端就是代表STM32芯片引出的GPIO引脚，其余部件都位于芯片的内部。
+
+
 
 ## 4.3 STM32---时钟系统
 
